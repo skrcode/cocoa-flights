@@ -1,0 +1,13 @@
+output
+*.pyc
+*.log
+cocoa/data/*
+log/*
+Makefile
+*.pkl
+*.json
+*.png
+web_output/*
+*.pdf
+
+data/*
