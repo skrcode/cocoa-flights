@@ -1,0 +1,44 @@
+Generate Schema :
+mkdir data/cache
+python src/scripts/generate_schema.py --schema-path data/schema.json --cache-path data/cache
+
+Generate scenarios from the schema :
+python src/scripts/generate_scenarios.py --schema-path data/schema.json --scenarios-path data/scenarios.json --num-scenarios 500 --random-attributes --random-items --alphas 0.3 1 3
+
+Run the website :
+python src/web/start_app.py --port 5000 --schema-path data/friends-schema.json --scenarios-path data/scenarios.json --config data/web/app_params.json
+
+Training :
+PYTHONPATH=. python src/main.py --schema-path data/schema.json --scenarios-path data/scenarios.json --train-examples-paths data/train.json --test-examples-paths data/dev.json --stop-words data/common_words.txt --min-epochs 10 --checkpoint checkpoint --rnn-type lstm --learning-rate 0.5 --optimizer adagrad --print-every 50 --model attn-copy-encdec --gpu 1 --rnn-size 100 --grad-clip 0 --num-items 12 --batch-size 32 --stats-file stats.json --entity-encoding-form type --entity-decoding-form type --node-embed-in-rnn-inputs --msg-aggregation max --word-embed-size 100 --node-embed-size 50 --entity-hist-len -1 --learned-utterance-decay
+
+Test :
+PYTHONPATH=. python src/main.py --schema-path data/schema.json --scenarios-path data/scenarios.json --stop-words data/common_words.txt --init-from checkpoint --test-examples-paths data/test.json --test --batch-size 32 --best --stats-file stats.json --decoding sample 0 --verbose
+Generate Scenarios :
+Generate scenarios from the schema
+
+Bot Bot Chat :
+PYTHONPATH=. python src/scripts/generate_dataset.py --max-turns 46 --schema-path data/schema.json --scenarios-path data/scenarios.json --stop-words data/common_words.txt --test-examples-paths chat.json --train-max-examples 0 --agents neural neural --model-path model/checkpoint --decoding sample 0.5 select
+Lexicon :
+ - Requires stop words,inverse lexicon, learner lexicon
+ - learner lexicon is used to create the stop words and inverse lexicon automatically.
+ -
+
+To Do :
+0. Retrain the models, the checkpoints are not the best possible. It will take more time to train.
+1. Get stop words for flights-most common words (Not doing, using default stop words)
+2.
+
+# Caveats
+1. Multiple possibilities of rows in out.csv matching (Done)
+2. Figure out greater than, less than for price. Rest all are not continuous like month etc.
+3. Dynamic entity name creation in knowledge graph
+4. Figuring out how to do <Select> operation. (Maybe by checking if selected on each event message?)
+
+# Aim
+1. Implement flights
+2. Make improvements to current knowledge graph + add to nltk
+3. Add knowledge graph generic implementation to opensource sematch
+4. Contribute to codalabs
+
+# Cool stuff
+1. pip install datefinder

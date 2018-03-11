@@ -28,7 +28,7 @@ if __name__ == '__main__':
     parser.add_argument('--test', default=False, action='store_true', help='Test mode')
     parser.add_argument('--best', default=False, action='store_true', help='Test using the best model on dev set')
     parser.add_argument('--verbose', default=False, action='store_true', help='More prints')
-    parser.add_argument('--domain', type=str, choices=['MutualFriends', 'Matchmaking'])
+    parser.add_argument('--domain', type=str, choices=['Flights'])
     add_scenario_arguments(parser)
     add_lexicon_arguments(parser)
     add_dataset_arguments(parser)

@@ -30,7 +30,7 @@ def tokens():
 
 @pytest.fixture(scope='session')
 def schema():
-    return Schema('data/friends-schema.json')
+    return Schema('data/friends-full_schema.json')
 
 @pytest.fixture(scope='session')
 def lexicon(schema):

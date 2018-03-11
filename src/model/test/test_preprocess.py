@@ -13,7 +13,7 @@ from numpy.testing import assert_array_equal
 class TestPreprocess(object):
     @pytest.fixture(scope='session')
     def schema(self):
-        schema_path = 'data/friends-schema.json'
+        schema_path = 'data/friends-full_schema.json'
         return Schema(schema_path)
 
     @pytest.fixture(scope='session')

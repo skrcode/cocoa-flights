@@ -11,7 +11,15 @@ class KB(object):
     def __init__(self, attributes, items):
         self.attributes = attributes
         self.items = items
-        self.entity_set = set([value.lower() for item in items for value in item.values()])
+
+        entity_set = list()
+        for item in items:
+            for value in item.values():
+                if type(value) == 'str':
+                    entity_set.append(value.lower())
+                else:
+                    entity_set.append(value)
+        self.entity_set = set(entity_set)
         self.entity_type_set = set([attr.value_type for attr in self.attributes])
 
     @staticmethod
