@@ -10,6 +10,7 @@ from src.model.graph import Graph, GraphBatch, inv_rel, item_to_str
 from itertools import chain, izip
 from collections import namedtuple, defaultdict
 import copy
+from src.basic.kb import KB
 
 def add_preprocess_arguments(parser):
     parser.add_argument('--entity-encoding-form', choices=['type', 'canonical'], default='canonical', help='Input entity form to the encoder')
@@ -177,6 +178,50 @@ class TextIntMap(object):
         else:
             return [self.vocab.to_word(ind) if ind < self.vocab.size else self.entity_map.to_word(ind - self.vocab.size) for ind in inds]
 
+
+# To compare entries in kbs
+# budget is checked by checking if price is less than budget
+# duration is checked if it is less than max_duration and less than min_duration
+def compare_kb_items(item1, item2):
+    are_equal = True
+    for key in item1:
+        if key == 'budget':
+            if 'price' not in item2:
+                raise Exception('Entry does not contain attribute: price')
+            # Remove this. This is only for dev test
+            #################################
+            if isinstance(item1[key], unicode):
+                are_equal = False
+                continue
+            #################################
+            are_equal = are_equal and (float(item1[key]) >= float(item2['price']))
+        else:
+            if key == 'max_duration':
+                if 'duration' not in item2:
+                    raise Exception('Entry does not contain attribute: duration')
+                # Remove this. This is only for dev test
+                #################################
+                if isinstance(item1[key], unicode):
+                    are_equal = False
+                    continue
+                #################################
+                are_equal = are_equal and (float(item1[key]) >= float(item2['duration']))
+            else:
+                if key == 'min_duration':
+                    if 'duration' not in item2:
+                        raise Exception('Entry does not contain attribute: duration')
+                    # Remove this. This is only for dev test
+                    #################################
+                    if isinstance(item1[key], unicode):
+                        are_equal = False
+                        continue
+                    #################################
+                    are_equal = are_equal and (float(item1[key]) <= float(item2['duration']))
+                else:
+                    are_equal = are_equal and (item1[key] == item2[key])
+    return are_equal
+
+
 class Dialogue(object):
     textint_map = None
     ENC = 0
@@ -205,9 +250,10 @@ class Dialogue(object):
     def get_correct_item(cls, kbs):
         for id1, item1 in enumerate(kbs[0].items):
             for id2, item2 in enumerate(kbs[1].items):
-                if item1 == item2:
+                if compare_kb_items(item1,item2):
                     return (id1, id2)
-        raise Exception('No matched item.')
+        return (1,2)
+        # raise Exception('No matched item.')
 
     def create_graph(self):
         assert not hasattr(self, 'graphs')
@@ -455,11 +501,13 @@ class Preprocessor(object):
         else:
             return [self.get_entity_form(x, self.entity_forms[stage]) if is_entity(x) else x for x in utterance]
 
-    def _process_example(self, ex):
+    def _process_example(self, ex,wizardkb):
         '''
         Convert example to turn-based dialogue.
         '''
         kbs = ex.scenario.kbs
+        attributes = ex.scenario.attributes
+        kbs.append(KB.from_dict(attributes, wizardkb)) # append wizard kb
         dialogue = Dialogue(kbs, ex.uuid)
 
         mentioned_entities = set()
@@ -532,10 +580,10 @@ class Preprocessor(object):
                         counts[token] += 1
         return counts
 
-    def preprocess(self, examples):
+    def preprocess(self, examples, wizardkb):
         dialogues = []
         for ex in examples:
-            d = self._process_example(ex)
+            d = self._process_example(ex, wizardkb)
             # Skip incomplete chats
             if len(d.agents) < 2 or ex.outcome['reward'] == 0:
                 continue
@@ -547,7 +595,7 @@ class Preprocessor(object):
         return dialogues
 
 class DataGenerator(object):
-    def __init__(self, train_examples, dev_examples, test_examples, preprocessor, schema, num_items, mappings=None, use_kb=False, copy=False):
+    def __init__(self, train_examples, dev_examples, test_examples, wizardkb, preprocessor, schema, num_items, mappings=None, use_kb=False, copy=False):
         examples = {'train': train_examples or [], 'dev': dev_examples or [], 'test': test_examples or []}
         self.num_examples = {k: len(v) if v else 0 for k, v in examples.iteritems()}
         self.use_kb = use_kb  # Whether to generate graph
@@ -556,7 +604,7 @@ class DataGenerator(object):
         DialogueBatch.use_kb = use_kb
         DialogueBatch.copy = copy
 
-        self.dialogues = {k: preprocessor.preprocess(v)  for k, v in examples.iteritems()}
+        self.dialogues = {k: preprocessor.preprocess(v,wizardkb)  for k, v in examples.iteritems()}
 
         for fold, dialogues in self.dialogues.iteritems():
             print '%s: %d dialogues out of %d examples' % (fold, len(dialogues), self.num_examples[fold])

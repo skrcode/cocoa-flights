@@ -33,12 +33,21 @@ To Do :
 2. Figure out greater than, less than for price. Rest all are not continuous like month etc.
 3. Dynamic entity name creation in knowledge graph
 4. Figuring out how to do <Select> operation. (Maybe by checking if selected on each event message?)
+5. lt gt checks
+6. return (id1,id2) when no match is found. either to remove the entry altogether or to handle not found case.
 
 # Aim
 1. Implement flights
 2. Make improvements to current knowledge graph + add to nltk
 3. Add knowledge graph generic implementation to opensource sematch
+ Cotribute to apache opennlp - check the paper on elastic search implementation on knowledge graphs
 4. Contribute to codalabs
 
 # Cool stuff
 1. pip install datefinder
+
+
+# Changes that I have done
+0. Added flights data. :D
+1. Added kb outside
+2.

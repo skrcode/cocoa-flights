@@ -28,7 +28,7 @@ if __name__ == '__main__':
     parser.add_argument('--test', default=False, action='store_true', help='Test mode')
     parser.add_argument('--best', default=False, action='store_true', help='Test using the best model on dev set')
     parser.add_argument('--verbose', default=False, action='store_true', help='More prints')
-    parser.add_argument('--domain', type=str, choices=['Flights'])
+    parser.add_argument('--domain', type=str, choices=['MutualFriends', 'Matchmaking'])
     add_scenario_arguments(parser)
     add_lexicon_arguments(parser)
     add_dataset_arguments(parser)
@@ -91,9 +91,9 @@ if __name__ == '__main__':
     preprocessor = Preprocessor(schema, lexicon, model_args.entity_encoding_form, model_args.entity_decoding_form, model_args.entity_target_form)
     if args.test:
         model_args.dropout = 0
-        data_generator = DataGenerator(None, None, dataset.test_examples, preprocessor, schema, model_args.num_items, mappings, use_kb, copy)
+        data_generator = DataGenerator(None, None, dataset.test_examples,read_json(args.wizardkb_path), preprocessor, schema, model_args.num_items, mappings, use_kb, copy)
     else:
-        data_generator = DataGenerator(dataset.train_examples, dataset.test_examples, None, preprocessor, schema, model_args.num_items, mappings, use_kb, copy)
+        data_generator = DataGenerator(dataset.train_examples, dataset.test_examples, None,read_json(args.wizardkb_path), preprocessor, schema, model_args.num_items, mappings, use_kb, copy)
     for d, n in data_generator.num_examples.iteritems():
         logstats.add('data', d, 'num_dialogues', n)
 
