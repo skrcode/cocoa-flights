@@ -34,14 +34,19 @@ class BaseLexicon(object):
 
     def load_entities(self):
         for type_, values in self.schema.values.iteritems():
+            print type_,values
             for value in values:
-                self._add_entity(type_, value.lower())
+                if isinstance(value, unicode):
+                    self._add_entity(type_,value.lower())
+                else:
+                    self._add_entity(type_,value)
 
     def _add_entity(self, type, entity):
         # Keep track of number of times words in this entity shows up
         if entity not in self.entities:
-            for word in entity.split(' '):
-                self.word_counts[word] += 1
+            if isinstance(entity,unicode):
+                for word in entity.split(' '):
+                    self.word_counts[word] += 1
         self.entities[entity] = type
 
     def lookup(self, phrase):
@@ -114,11 +119,16 @@ class Lexicon(BaseLexicon):
             phrases = []
             mod_entity = entity
             for s in [' of ', ' - ', '-']:
-                mod_entity = mod_entity.replace(s, ' ')
+                if isinstance(mod_entity, unicode):
+                    mod_entity = mod_entity.replace(s, ' ')
 
             # Add all tokens in entity -- we only compute token-level edits (except for acronyms/prefixes...)
-            entity_tokens = mod_entity.split(' ')
-            phrases.extend([t for t in entity_tokens])
+            if isinstance(mod_entity, unicode):
+                entity_tokens = mod_entity.split(' ')
+                phrases.extend([t for t in entity_tokens])
+            else:
+                phrases.extend([mod_entity])
+
 
             synonyms = []
             if entity == 'facebook':
@@ -135,7 +145,7 @@ class Lexicon(BaseLexicon):
                     synonyms.extend(['and', '&', "'n"])
 
             # Multi-token level variants: UPenn, uc berkeley
-            if len(mod_entity.split(" ")) > 1:
+            if isinstance(entity, unicode) and len(mod_entity.split(" ")) > 1:
                 phrase_level_prefixes = get_prefixes(mod_entity, min_length=1, max_length=5)
                 phrase_level_acronyms = get_acronyms(mod_entity)
                 synonyms.extend(phrase_level_acronyms)

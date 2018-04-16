@@ -1,5 +1,7 @@
 def get_prefixes(entity, min_length=3, max_length=8):
     # computer science => ['comp sci', ...]
+    if not isinstance(entity, unicode):
+        return [entity]
     words = entity.split()
     candidates = ['']
     candidates = []
@@ -38,6 +40,9 @@ def get_acronyms(entity):
 
 alphabet = "abcdefghijklmnopqrstuvwxyz "
 def get_edits(entity):
+
+    if not isinstance(entity, unicode):
+        return [entity]
     if len(entity) < 3:
         return []
     edits = []
@@ -81,6 +86,8 @@ def get_morphological_variants(entity):
     :param entity:
     :return:
     """
+    if not isinstance(entity, unicode):
+        return [entity]
     results = []
     for suffix in ['ing']:
         if entity.endswith(suffix):

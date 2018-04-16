@@ -45,7 +45,12 @@ def item_to_entity(id_):
 def build_schema_mappings(schema, num_items):
     entity_map = Vocabulary(unk=True)
     for type_, values in schema.values.iteritems():
-        entity_map.add_words(((value.lower(), type_) for value in values))
+        for value in values:
+            if isinstance(value, unicode):
+                entity_map.add_words((value.lower(), type_))
+            else:
+                entity_map.add_words((value, type_))
+
     # Add item nodes
     for i in xrange(num_items):
         entity_map.add_word(item_to_entity(i)[1])

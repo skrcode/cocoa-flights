@@ -340,7 +340,8 @@ class Graph(object):
             for attr_name, value in attrs:
                 type_ = Graph.metadata.attribute_types[attr_name]
                 attr_name = attr_name.lower()
-                value = value.lower()
+                if isinstance(value, unicode):
+                    value = value.lower()
                 # Attribute nodes
                 attr_node = (attr_name, 'attr')
                 #attr_node = (attr_name, attr_name)
