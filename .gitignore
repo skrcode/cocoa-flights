@@ -1,7 +1,6 @@
 output
 *.pyc
 *.log
-cocoa/data/*
 log/*
 Makefile
 *.pkl
@@ -9,6 +8,7 @@ Makefile
 *.png
 web_output/*
 *.pdf
-
+cocoa/*
 data/*
 notes
+.ida/*

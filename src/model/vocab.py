@@ -31,9 +31,11 @@ class Vocabulary(object):
             self.size += 1
 
     def to_ind(self, word):
+
         if word in self.word_to_ind:
             return self.word_to_ind[word]
         else:
+
             # NOTE: if UNK is not enabled, it will throw an exception
             if self.UNK in self.word_to_ind:
                 return self.word_to_ind[self.UNK]

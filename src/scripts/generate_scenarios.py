@@ -130,6 +130,7 @@ def generate_scenario(schema):
         del agent_items[agent][num_items:]
 
     for agent in agents:
+        print len(agent_items[agent]),num_items
         if len(agent_items[agent]) != num_items:
             raise Exception('Failed to generate enough items')
 

@@ -303,11 +303,27 @@ class Graph(object):
 
     def get_node_paths(self):
         node_paths = []
+
+        dict_node_paths = dict()
+        i = 0
+        for path_id,path in enumerate(self.paths):
+            i = i + 1
+            if path_id != Graph.metadata.PAD_PATH_ID:
+                if path[0] not in dict_node_paths:
+                    dict_node_paths[path[0]] = list()
+                dict_node_paths[path[0]].append(path_id)
         for node_id in self.node_ids:
-            # Skip the first padding path
-            paths = [path_id for path_id, path in enumerate(self.paths) if path_id != Graph.metadata.PAD_PATH_ID and path[0] == node_id]
-            node_paths.append(np.array(paths, dtype=np.int32))
+            if node_id not in dict_node_paths:
+                node_paths.append(np.array(list(), dtype=np.int32))
+                continue
+            node_paths.append(np.array(dict_node_paths[node_id], dtype=np.int32))
         return node_paths
+        # for node_id in self.node_ids:
+        #     # Skip the first padding path
+        #     print node_id
+        #     paths = [path_id for path_id, path in enumerate(self.paths) if path_id != Graph.metadata.PAD_PATH_ID and path[0] == node_id]
+        #     node_paths.append(np.array(paths, dtype=np.int32))
+        # return node_paths
 
     def get_input_data(self):
         '''
@@ -429,6 +445,7 @@ class Graph(object):
         feats = [[0, self._node_type(node)] if node[1] == 'item' or node[1] == 'attr'
                 else [-1, self._node_type(node)] for node in nodes]
         # Compute degree of each node
+        #GRAPHTODO -
         for path in self.paths:
             n1, r, n2 = path
             feats[n1][0] += 1

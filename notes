@@ -35,6 +35,7 @@ To Do :
 4. Figuring out how to do <Select> operation. (Maybe by checking if selected on each event message?)
 5. lt gt checks
 6. return (id1,id2) when no match is found. either to remove the entry altogether or to handle not found case.
+7. The graph takes all the node paths and iterates on them. This is not a scalable approach.
 
 # Aim
 1. Implement flights
@@ -50,4 +51,4 @@ To Do :
 # Changes that I have done
 0. Added flights data. :D
 1. Added kb outside
-2.
+2. write about maluuba dataset, explanation
