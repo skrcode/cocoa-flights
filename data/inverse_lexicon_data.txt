@@ -1,0 +1,179 @@
+vancouver, canada,vancouver
+coruscant,coruscant
+cancun, mexico,cancun
+theed,theed
+mexicoh city,mexico city
+paris, france,paris
+barkcelona,barcelona
+phoenix, usa,phoenix
+kobe, japan,kobe
+pueblla,puebla
+kingston ontario,kingston
+tjiuana,tijuana
+san antoni,san antonio
+tel aviv,tel aviv
+calgary, canada,calgary
+atlanta, united states,atlanta
+porto,porto alegre
+canoas,canoas
+birmingham city,birmingham
+athens, greece,athens
+boston, massachusetts,boston
+manas,manaus
+sapporo, japan,sapporo
+cairo, illinois,cairo
+goinania,goiania
+brazil,brasilia
+gotham city,gotham city
+vancouver, british columbia,vancouver
+campinnas,campinas
+porto alegrie,porto alegre
+nepal,nepal
+san diego, usa,san diego
+hiroshma, japan,hiroshima
+dalle,dallas
+melbourne, usa,melbourne
+bh,bh
+recife, brazil,recife
+queenstown, new zealand,queenstown
+barcelona, spain,barcelona
+la,los angeles
+godric's hollow,godric's hollow
+hogsmeade,hogsmeade
+caprica,caprica
+colorado,colorado
+fort lauderdle,fort lauderdale
+london, canada,london
+termina,termina
+tofino,tofino
+long baech,long beach
+kingston, canada,kingston
+melbourne usa,melbourne
+atlantis,atlanta
+neverland,neverland
+vancouver, jamaica,vancouver
+salvador, brazil,salvador
+detoit,detroit
+long beach, usa,long beach
+busan, south korea,busan
+mtl,montreal
+pittsborgh,pittsburgh
+brasilia, brazil,brasilia
+beijing,beijing
+mos eisley,mos eisley
+mexico,mexico city
+kakariko village,kakariko village
+philly,philadelphia
+dallas, usa,dallas
+jerusalem,jerusalem
+san fran,san francisco
+kabul,kabul
+nyc,new york
+the veg,the veg
+pho,phoenix
+vitoria, spain,vitoria
+hauston,houston
+melbourne, australia,melbourne
+germany,germany
+london, england,london
+diagon alley,diagon alley
+phili,philadelphia
+sl,st. louis
+sf,san francisco
+manaus, brazil,manaus
+tijuana, mexico,tijuana
+pittsborgh, pennsylvania,pittsburgh
+japan,japan
+buenos aires, argentina,buenos aires
+porto alegre, brazil,porto alegre
+atlanta usa,atlanta
+sansot, brazil,brasilia
+santa cruz,santa cruz
+south america,south america
+fortaleza, brazil,brasilia
+vitoria spain,vitoria
+atlante,atlanta
+munich, germany,munich
+argentina,buenos aires
+mexica,mexico city
+cairo usa,cairo
+madrid, spain,madrid
+cuba,cuba
+further south,further south
+hogsmead,hogsmead
+orlando,orlando
+rio de janeiror,rio de janeiro
+toronto canada,toronto
+asian,asian
+senbai,sendai
+tampa's,tampa
+frankfurt, germany,frankfurt
+us,us
+houst,houston
+queenstown south africa,queenstown
+tokyo, japan,tokyo
+canada,canada
+guadala,guadalajara
+united states,united states
+ciudad juarez, mexico,ciudad juarez
+tolucca,toluca
+europe,europe
+santodomingo,santo domingo
+ba,ba
+monterrey, mexico,mexico city
+hiroshima, japan,hiroshima
+rosario, argentina,rosario
+gaudalajara,guadalajara
+santso,santos
+jersusalem,jersusalem
+melbourne,melbourne
+hiroshma,hiroshima
+dominican republic,dominican republic
+berlin, germany,berlin
+minneapolis, minnesota,minneapolis
+cencun,cancun
+washington,washington
+mexico city, mexico,mexico city
+pun cana,punta cana
+san diego, us,san diego
+minneapolis, usa,minneapolis
+veg,veg
+corsucant,corsucant
+la paz, bolivia,la paz
+south korea,south korea
+maceio, brazil,maceio
+columbo,columbus
+miami, us,miami
+toronto, canada,toronto
+atlanta, us,atlanta
+leon, spain,leon
+porto aleger,porto alegre
+la paz mexico,la paz
+miami, florida,miami
+london,london
+north pole,north pole
+rio de janeiro, brazil,rio de janeiro
+la poz,la paz
+kingston canada,kingston
+phoenix's,phoenix
+punto cana,punta cana
+indianapolis, united states,indianapolis
+italy,italy
+outside the us,outside the us
+detrut,detroit
+curitiba, brazil,brasilia
+punta cana, dominican republic,punta cana
+ny,new york
+curritiba,curitiba
+kocchi,kochi
+barcelonna,barcelona
+santios,santos
+kingston , canada,kingston
+mainaus,manaus
+hiroshami,hiroshima
+mannheim, germany,mannheim
+paris',paris
+recofe in brazil,recife
+detroit usa,detroit
+hyrule,hyrule
+indianapolis usa,indianapolis

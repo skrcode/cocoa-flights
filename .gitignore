@@ -9,6 +9,5 @@ Makefile
 web_output/*
 *.pdf
 cocoa/*
-data/*
 notes
 .ida/*
